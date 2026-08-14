@@ -2,6 +2,7 @@ import os
 import re
 import subprocess
 import shutil
+import sys
 from Agent import run_research
 
 
@@ -32,7 +33,12 @@ def convert_to_docx(md_path: str, docx_path: str) -> bool:
 
 
 def main():
-    topic = input("Enter a research topic: ").strip()
+
+    if len(sys.argv) > 1:
+        topic = " ".join(sys.argv[1:]).strip()
+    else:
+        topic = input("Enter a research topic: ").strip()
+
     if not topic:
         print("No topic entered. Exiting.")
         return

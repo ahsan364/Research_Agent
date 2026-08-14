@@ -13,3 +13,9 @@ pip install --force-reinstall \
   "langchain-text-splitters==0.3.11"
 pip install "langchain-openai==0.3.35"
 get open ai api key and serper api key
+
+
+# to run git action ci/cd
+git add Agent.py
+git commit -m "Improve research agent"
+git push origin main

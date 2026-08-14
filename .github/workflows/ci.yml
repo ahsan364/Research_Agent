@@ -9,8 +9,12 @@ on:
       - main
 
 jobs:
-  test:
+  research-agent:
     runs-on: ubuntu-latest
+
+    env:
+      GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+      SERPER_API_KEY: ${{ secrets.SERPER_API_KEY }}
 
     steps:
       - name: Checkout repository
@@ -33,6 +37,12 @@ jobs:
           python -m py_compile main.py
           python -m py_compile tools/Search_tool.py
 
-      - name: Test agent imports
+      - name: Run Research Agent
         run: |
-          python -c "from Agent import build_agent; print('Agent imported successfully')"
+          python main.py "Artificial Intelligence in Healthcare"
+
+      - name: Upload research report
+        uses: actions/upload-artifact@v4
+        with:
+          name: research-report
+          path: reports/
